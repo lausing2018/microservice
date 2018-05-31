@@ -3,6 +3,13 @@ package com.activemessure.view.rest.presentation;
 public class NoteRequest {
 	
 	private String userId;
+	private String noteId;
+	public String getNoteId() {
+		return noteId;
+	}
+	public void setNoteId(String noteId) {
+		this.noteId = noteId;
+	}
 	private String notes;
 	private String title;
 	public String getUserId() {

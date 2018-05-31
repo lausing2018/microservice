@@ -52,4 +52,21 @@ public class NoteServiceImpl implements NoteService{
 		
 	}
 
+	@Override
+	public Note updateNewNote(NoteRequest param) {
+		Note entity = new Note();;
+		
+		try {
+			Note note = new Note();
+			note.setNoteId(param.getNoteId());
+			note.setUserId(param.getUserId());
+			note.setTitle(param.getTitle());		
+			entity = noteRepo.save(note);
+			
+		}catch(Exception ex){
+			System.out.println("Log exception:"+ex.getMessage());
+		}
+		return entity;	
+	}
+
 }

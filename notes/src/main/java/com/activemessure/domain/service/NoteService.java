@@ -10,5 +10,7 @@ public interface NoteService {
 	public List<Note> findAllNotesByUserId(String userId);
 	
 	public Note addNewNote(NoteRequest param);
+	
+	public Note updateNewNote(NoteRequest param);
 
 }

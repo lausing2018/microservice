@@ -29,7 +29,7 @@ public class NoteController {
 	@Autowired
 	private NoteService noteService;
 
-    @RequestMapping(value = "/all",method = RequestMethod.GET)
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
     public NoteResponse getAllNotes() {
     	
     	
@@ -69,6 +69,47 @@ public class NoteController {
 			response.setMessage("noteRequest cannot be null");
 			return response;
 
+		}
+		else if(noteRequest.getUserId().isEmpty() || noteRequest.getUserId() == null) {
+			response.setStatusCode("404");
+			response.setMessage("User Id cannot be null or empty");
+			return response;
+		}
+		else if(noteRequest.getTitle() == null || noteRequest.getTitle().isEmpty()){
+			
+			response.setStatusCode("404");
+			response.setMessage("Title cannot be null or empty");
+			return response;
+
+		}
+		Note note = noteService.addNewNote(noteRequest);
+		if(note != null){
+			response.setStatusCode("200");
+			response.setMessage("Successful");	
+		}
+		else{
+			response.setStatusCode("500");
+			response.setMessage("Cannot add note");
+		}
+    	
+		return response;
+	}
+	
+	@RequestMapping(value="/update/",method=RequestMethod.PUT)
+	public NoteResponse updateNote( @RequestBody NoteRequest noteRequest){
+		NoteResponse response = new NoteResponse();
+		
+		if(noteRequest==null){
+
+			response.setStatusCode("404");
+			response.setMessage("noteRequest cannot be null");
+			return response;
+
+		}
+		else if(noteRequest.getNoteId().isEmpty() || noteRequest.getNoteId() == null) {
+			response.setStatusCode("404");
+			response.setMessage("Note Id cannot be null or empty");
+			return response;
 		}
 		else if(noteRequest.getUserId().isEmpty() || noteRequest.getUserId() == null) {
 			response.setStatusCode("404");
