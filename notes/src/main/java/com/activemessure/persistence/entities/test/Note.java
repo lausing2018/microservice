@@ -2,6 +2,10 @@ package com.activemessure.persistence.entities.test;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import java.util.Date;
 
 
@@ -16,7 +20,12 @@ public class Note implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="note_id")
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(
+		name = "UUID",
+		strategy = "org.hibernate.id.UUIDGenerator"
+	)
+	@Column(name="note_id",updatable = false, nullable = false)
 	private String noteId;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -29,6 +38,7 @@ public class Note implements Serializable {
 
 	private String notes;
 
+	@NotBlank
 	private String title;
 
 	public Note() {
