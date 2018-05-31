@@ -38,6 +38,11 @@ public class NoteController {
         return new NoteResponse(10,"Hello!!!");
     }
     
+    /**
+     * Get Notes for User
+     * @param userId
+     * @return NoteResponse
+     */
     @RequestMapping(value = "/{userId}",method = RequestMethod.GET)
     public NoteResponse getNotesByUserId(@PathVariable("userId") String userId) {
     	
@@ -58,7 +63,11 @@ public class NoteController {
     	
         return response;
     }
-    
+    /**
+     * Add Note
+     * @param noteRequest
+     * @return NoteResponse
+     */
 	@RequestMapping(value="/add/",method=RequestMethod.POST)
 	public NoteResponse addNewNote( @RequestBody NoteRequest noteRequest){
 		NoteResponse response = new NoteResponse();
@@ -95,6 +104,11 @@ public class NoteController {
 		return response;
 	}
 	
+	/**
+	 * Update Note
+	 * @param noteRequest
+	 * @return NoteResponse
+	 */
 	@RequestMapping(value="/update/",method=RequestMethod.PUT)
 	public NoteResponse updateNote( @RequestBody NoteRequest noteRequest){
 		NoteResponse response = new NoteResponse();
@@ -123,7 +137,7 @@ public class NoteController {
 			return response;
 
 		}
-		Note note = noteService.addNewNote(noteRequest);
+		Note note = noteService.updateNote(noteRequest);
 		if(note != null){
 			response.setStatusCode("200");
 			response.setMessage("Successful");	
@@ -136,5 +150,27 @@ public class NoteController {
 		return response;
 	}
 
-    
+	/**
+	 * Delete Note
+	 * @param noteRequest
+	 * @return null
+	 */
+	@RequestMapping(value="/delete/",method=RequestMethod.DELETE)
+	public NoteResponse deleteNote( @RequestBody NoteRequest noteRequest){
+		NoteResponse response = new NoteResponse();
+		
+
+		if(noteRequest==null || noteRequest.getNoteId().isEmpty() || noteRequest.getNoteId() == null) {
+			response.setStatusCode("404");
+			response.setMessage("Note Id cannot be null or empty");
+			return response;
+		}
+
+		noteService.deleteNote(noteRequest);
+		response.setStatusCode("200");
+		response.setMessage("Successful");	
+
+    	
+		return response;
+	}
 }

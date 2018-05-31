@@ -11,6 +11,8 @@ public interface NoteService {
 	
 	public Note addNewNote(NoteRequest param);
 	
-	public Note updateNewNote(NoteRequest param);
+	public Note updateNote(NoteRequest param);
+	
+	public void deleteNote(NoteRequest param);
 
 }
