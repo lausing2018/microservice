@@ -36,6 +36,7 @@ public class Note implements Serializable {
 	@Column(name="last_updated_time")
 	private Date lastUpdatedTime;
 
+	@Column(length = 1000)
 	private String notes;
 	
 	//bi-directional many-to-one association to User
@@ -47,6 +48,7 @@ public class Note implements Serializable {
 	private String userId;
 
 	@NotBlank
+	@Column(length = 50)
 	private String title;
 
 	public Note() {
