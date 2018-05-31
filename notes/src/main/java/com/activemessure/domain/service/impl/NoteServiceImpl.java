@@ -1,5 +1,32 @@
 package com.activemessure.domain.service.impl;
 
-public class NoteServiceImpl {
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.activemessure.domain.repositories.NoteRepository;
+import com.activemessure.domain.service.UserService;
+import com.activemessure.persistence.entities.test.Note;
+import com.activemessure.domain.service.NoteService;;
+
+@Service
+@Transactional
+public class NoteServiceImpl implements NoteService{
+	
+	@Autowired
+	private NoteRepository noteRepo;
+	
+	@Override
+	public List<Note> findAllNotesByUserId(String userId) {
+
+		List<Note> notes = noteRepo.findByUserId(userId);
+		
+			
+		
+		return notes;
+	}
 
 }

@@ -37,6 +37,11 @@ public class Note implements Serializable {
 	private Date lastUpdatedTime;
 
 	private String notes;
+	
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
 	@NotBlank
 	private String title;
@@ -84,4 +89,13 @@ public class Note implements Serializable {
 		this.title = title;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+		
 }
