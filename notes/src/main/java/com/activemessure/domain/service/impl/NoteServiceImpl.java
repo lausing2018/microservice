@@ -22,10 +22,16 @@ public class NoteServiceImpl implements NoteService{
 	@Override
 	public List<Note> findAllNotesByUserId(String userId) {
 
-		List<Note> notes = noteRepo.findByUserId(userId);
-		
+		List<Note> notes = new ArrayList<>();
+		try {
 			
-		
+			notes = noteRepo.findByUserId(userId);
+			
+			
+		}catch(Exception ex){
+			System.out.println("Log exception:"+ex.getMessage());
+		}
+
 		return notes;
 	}
 

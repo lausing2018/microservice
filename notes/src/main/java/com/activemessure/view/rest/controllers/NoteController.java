@@ -21,8 +21,8 @@ import com.activemessure.persistence.entities.test.Note;
 public class NoteController {
 
 	
-	@Autowired
-	private UserService userService;
+	//@Autowired
+	//private UserService userService;
 	
 	@Autowired
 	private NoteService noteService;
@@ -49,6 +49,8 @@ public class NoteController {
     	
     	List<Note> notes = noteService.findAllNotesByUserId(userId);
     	
+    	response.setStatusCode("200");
+		response.setMessage("Successful");
     	response.setUserId(userId);
     	response.setNotes(notes);
     	

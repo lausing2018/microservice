@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -41,6 +42,10 @@ public class User implements Serializable {
 
 	@NotBlank
 	private String password;
+	
+	//bi-directional many-to-one association to Note
+/*	@OneToMany(mappedBy="user")
+	private List<Note> notes;*/
 
 	public User() {
 	}
@@ -85,4 +90,12 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+/*	public List<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}*/
+	
 }
